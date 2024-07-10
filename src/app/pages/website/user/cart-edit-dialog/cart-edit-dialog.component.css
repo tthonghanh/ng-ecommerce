@@ -1,0 +1,13 @@
+.productName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.product-quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

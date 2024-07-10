@@ -1,0 +1,17 @@
+.product-list {
+  margin-top: 100px;
+}
+
+.card-body .card {
+  margin: 15px 0;
+}
+
+.card-img-top-full {
+  width: 100%;
+  height: 220px;
+}
+
+.card-img-top-small {
+  width: 100%;
+  height: 150px;
+}

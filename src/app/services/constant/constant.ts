@@ -1,0 +1,25 @@
+export const Constant = {
+  API_END_POINT: 'https://freeapi.miniprojectideas.com/api/BigBasket/',
+  METHODS: {
+    GET_ALL_PRODUCTS: 'GetAllProducts',
+    GET_ALL_PRODUCTS_BY_CATEGORY_ID: 'GetAllProductsByCategoryId?id=',
+    GET_ALL_CATEGORY: 'GetAllCategory',
+    GET_ALL_SALE: 'GetAllSaleItems',
+    GET_SALE_BY_CUST_ID: 'GetAllSaleByCustomerId?id=',
+    GET_CART_BY_CUSTOMER_ID: 'GetCartProductsByCustomerId?id=',
+    GET_ALL_CUSTOMERS: 'GetAllCustomer',
+    GET_CUSTOMER_BY_ID: 'GetCustomerById?id=',
+    OPEN_SALE_BY_SALE_ID: 'OpenSaleBySaleId?saleId=',
+    CREATE_CATEGORY: 'CreateNewCategory',
+    CREATE_PRODUCT: 'CreateProduct',
+    UPDATE_PRODUCT: 'UpdateProduct',
+    DELETE_CATEGORY: 'DeleteCategoryById?id=',
+    DELETE_PRODUCT: 'DeleteProductById?id=',
+    DELETE_PRODUCT_FROM_CART_BY_ID: 'DeleteProductFromCartById?id=',
+    ADD_TO_CART: 'AddToCart',
+    LOGIN: 'Login',
+    REGISTER: 'RegisterCustomer',
+    PLACE_ORDER: 'PlaceOrder',
+    CANCEL_ORDER_BY_SALE_ID: 'cancelOrder?saleId=',
+  }
+}

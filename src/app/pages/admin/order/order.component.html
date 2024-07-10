@@ -1,0 +1,51 @@
+<div class="orders" *ngIf="order$ | async as orders else loadingTmpl">
+  <div class="row">
+
+      <div class="card p-0">
+        <div class="card-header bg-primary">
+            <div class="">Order List</div>
+        </div>
+        <div class="card-body p-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Total Invoicement</th>
+                <th scope="col">Status</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ord of orders">
+                    <th scope="row">
+                      <p class="mb-0 mt-4">{{ord.saleId}}</p>
+                    </th>
+                    <td>
+                        <p class="mb-0 mt-4">{{ord.saleDate | date: "medium"}}</p>
+                    </td>
+                    <td>
+                        <p class="mb-0 mt-4">{{ord.totalInvoiceAmount | currency}}</p>
+                    </td>
+                    <td>
+                        <p class="mb-0 mt-4 text-danger" *ngIf="ord.isCanceled">Canceled</p>
+                        <p class="mb-0 mt-4 text-primary" *ngIf="!ord.isCanceled">On Delivery</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-md bg-light border m-1 text-primary" (click)="openOrderDetailDialog(ord)">
+                            View
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #loadingTmpl>
+  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+</ng-template>

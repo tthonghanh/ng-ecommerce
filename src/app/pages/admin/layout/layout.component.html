@@ -1,0 +1,17 @@
+<nav>
+  <div class="navbar">
+    <div class="logo"><a href="#">My Store</a></div>
+    <ul class="menu">
+      <li><a [routerLink]="['/home']">Home Page</a></li>
+      <li><a [routerLink]="['/admin/products']">Products</a></li>
+      <li><a [routerLink]="['/admin/categories']">Categories</a></li>
+      <li><a [routerLink]="['/admin/customers']">Customer List</a></li>
+      <li><a [routerLink]="['/admin/orders']">Order List</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

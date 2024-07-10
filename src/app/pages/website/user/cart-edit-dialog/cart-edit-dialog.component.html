@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Edit Quantity</h2>
+<mat-dialog-content>
+  <div class="rounded position-relative fruite-item">
+    <div class="fruite-img" style="cursor: pointer;">
+        <img [src]="data.item.productImageUrl" class="img-fluid w-100 rounded-top" style="height: 220px;" alt="">
+    </div>
+    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+        <h4 class="productName">{{data.item.productName}}</h4>
+        <div class="product-quantity">
+
+          <div class="input-group quantity" style="width: 100px;">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border" (click)="dec()" [disabled]="quantity === 1">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <div class="form-control form-control-sm text-center border-0">{{quantity}}</div>
+            <div class="input-group-btn">
+                <button class="btn btn-sm btn-plus rounded-circle bg-light border" (click)="inc()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center flex-lg-wrap mt-3">
+            <p class="text-dark fs-5 fw-bold mb-0">{{data.item.productPrice | currency}}</p>
+            <!-- <a class="btn border border-secondary rounded-pill px-3 text-primary" (click)="addToCart()" *ngIf="isProductInCart == false"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+            <a class="btn border border-secondary rounded-pill px-3 text-success" (click)="updateCart()"><i class="fa fa-shopping-bag me-2 text-success"></i> Update Quantity</a>
+          </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions align="end">
+  <a class="btn border border-secondary rounded-pill px-3 text-success" (click)="updateCart()"><i class="fa fa-shopping-bag me-2 text-success"></i> Update Quantity</a>
+</mat-dialog-actions> -->

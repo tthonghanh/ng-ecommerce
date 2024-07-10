@@ -1,0 +1,51 @@
+<div class="parent">
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+      <div class="signup">
+        <form #signInFrm="ngForm">
+          <label for="chk" aria-hidden="true">Sign up</label>
+          <input class="form-control" type="text" name="name" [(ngModel)]="signinObj.name" placeholder="User name" required minlength="4" maxlength="16" [pattern]="usernamePattern" #name="ngModel">
+          <div class="validation" *ngIf="name.dirty || name.touched">
+            <small class="text-danger" *ngIf="name.errors?.['required']">User name is required</small>
+            <small class="text-danger" *ngIf="name.errors?.['minlength'] || name.errors?.['maxlength']">Length from 4-16</small>
+            <small class="text-danger" *ngIf="!(name.errors?.['minlength'] || name.errors?.['maxlength']) && name.errors?.['pattern']">Only alphabet</small>
+          </div>
+          <input class="form-control" type="tel" name="mobileNo" [(ngModel)]="signinObj.mobileNo" placeholder="Mobile phone" required minlength="10" maxlength="10" [pattern]="mobileNoPattern" #mobileNo="ngModel">
+          <div class="validation" *ngIf="mobileNo.dirty || mobileNo.touched">
+            <small class="text-danger" *ngIf="mobileNo.errors?.['required']">Mobile phone is required</small>
+            <small class="text-danger" *ngIf="mobileNo.errors?.['minlength'] || mobileNo.errors?.['maxlength']">Require 10 numbers</small>
+            <small class="text-danger" *ngIf="!(mobileNo.errors?.['minlength'] || mobileNo.errors?.['maxlength']) && mobileNo.errors?.['pattern']">Only numbers</small>
+          </div>
+          <input class="form-control" type="password" name="password" [(ngModel)]="signinObj.password" placeholder="Password" required minlength="5" maxlength="10" [pattern]="passwordPattern" #password="ngModel">
+          <div class="validation" *ngIf="password.dirty || password.touched">
+            <small class="text-danger" *ngIf="password.errors?.['required']">Password is required</small>
+            <small class="text-danger" *ngIf="password.errors?.['minlength'] || password.errors?.['maxlength']">Length from 5-10</small>
+            <small class="text-danger" *ngIf="!(password.errors?.['minlength'] || password.errors?.['maxlength']) && password.errors?.['pattern']">Only alphabet, digit and at least one of !@#$%^&*</small>
+          </div>
+          <button (click)="onSignup()" [disabled]="signInFrm.invalid">Sign up</button>
+        </form>
+      </div>
+
+      <div class="login">
+        <form #logInFrm="ngForm">
+          <label for="chk" aria-hidden="true">Login</label>
+          <input class="form-control" type="tel" name="userName" [(ngModel)]="loginObj.userName" placeholder="Mobile phone" required minlength="10" maxlength="10" [pattern]="mobileNoPattern" #userName="ngModel">
+          <div class="validation" *ngIf="userName.dirty || userName.touched">
+            <small class="text-danger" *ngIf="userName.errors?.['required']">Mobile phone is required</small>
+            <small class="text-danger" *ngIf="userName.errors?.['minlength'] || userName.errors?.['maxlength']">Require 10 numbers</small>
+            <small class="text-danger" *ngIf="!(userName.errors?.['minlength'] || userName.errors?.['maxlength']) && userName.errors?.['pattern']">Only numbers</small>
+          </div>
+          <input class="form-control" type="password" name="userPassword" [(ngModel)]="loginObj.userPassword" placeholder="Password" required minlength="5" maxlength="10" [pattern]="passwordPattern" #userPassword="ngModel">
+          <div class="validation" *ngIf="userPassword.dirty || userPassword.touched">
+            <small class="text-danger" *ngIf="userPassword.errors?.['required']">Password is required</small>
+            <small class="text-danger" *ngIf="userPassword.errors?.['minlength'] || userPassword.errors?.['maxlength']">Length from 5-10</small>
+            <small class="text-danger" *ngIf="!(userPassword.errors?.['minlength'] || userPassword.errors?.['maxlength']) && userPassword.errors?.['pattern']">Only alphabet, digit and at least one of !@#$%^&*</small>
+          </div>
+          <button (click)="onLogin()" [disabled]="logInFrm.invalid">Login</button>
+          <p><a [routerLink]="'/admin-log-in'">Login as admin?</a></p>
+        </form>
+      </div>
+  </div>
+</div>
+

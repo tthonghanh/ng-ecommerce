@@ -1,0 +1,37 @@
+<div class="customers" *ngIf="customer$ | async as customers else loadingTmpl">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-6 text-light">Customer List</div>
+          </div>
+        </div>
+      <div class="card-body p-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cust of customers; let index = index">
+              <td scope="row">{{index + 1}}</td>
+              <td>{{cust.name}}</td>
+              <td>{{cust.mobileNo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTmpl>
+  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+</ng-template>

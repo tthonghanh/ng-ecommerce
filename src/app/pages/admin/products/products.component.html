@@ -1,0 +1,109 @@
+<div class="product-list">
+  <div class="row">
+    <div [ngClass]="isSidePanelVisible ? 'col-8' : 'col-12'">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-6">Product List</div>
+            <div class="col-6 text-end">
+              <button class="btn btn-sm btn-success" (click)="openSidePanel()">New</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="productList$ | async as products else loadingTmpl">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-3" *ngFor="let product of products">
+                <div class="card">
+                  <img [ngClass]="isSidePanelVisible ? 'card-img-top-small' : 'card-img-top-full'" [src]="product.productImageUrl" [alt]="product.productShortName" fill>
+                  <div class="card-body">
+                    <h4 class="card-title">{{product.productName}}</h4>
+                    <p class="card-text">{{product.categoryName}}</p>
+                    <p class="card-price">{{product.productPrice | currency}}</p>
+                    <a class="btn btn-primary" (click)="onEdit(product)">Edit</a>
+                    <a class="btn btn-danger mx-2" (click)="onDelete(product)">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf="isSidePanelVisible">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-6">New Product</div>
+            <div class="col-6 text-end">
+              <button class="btn btn-sm btn-success" (click)="closeSidePanel()">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <form class="card-body" #productForm="ngForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">SKU</label>
+              <input type="text" name="productSku" [(ngModel)]="productObject.productSku" id="" class="form-control">
+            </div>
+            <div class="col-6">
+              <label for="">Name</label>
+              <input type="text" name="productName" [(ngModel)]="productObject.productName" id="" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="">Short Name</label>
+              <input type="text" name="productShortName" [(ngModel)]="productObject.productShortName" id="" class="form-control">
+            </div>
+            <div class="col-6">
+              <label for="">Price</label>
+              <input type="text" name="productPrice" [(ngModel)]="productObject.productPrice" id="" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="">Category</label>
+              <select [(ngModel)]="productObject.categoryId" class="form-select" name="categoryId" onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                <option *ngFor="let cate of categoryList" [value]="cate.categoryId"> {{cate.categoryName}} </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Delivery Time Span</label>
+              <input type="text" name="deliveryTimeSpan" [(ngModel)]="productObject.deliveryTimeSpan" id="" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label for="">Image URL</label>
+              <input type="text" name="productImageUrl" [(ngModel)]="productObject.productImageUrl" id="" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label for="">Product Description</label>
+              <textarea type="text" name="productDescription" [(ngModel)]="productObject.productDescription" id="" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <button type="button" class="btn btn-success" (click)="onReset()">Reset</button>
+            </div>
+            <div class="col-6">
+              <button type="button" *ngIf="productObject.productId == 0" class="btn btn-success" (click)="onSave()" >Create Product</button>
+              <button type="button" *ngIf="productObject.productId !== 0" class="btn btn-primary" (click)="onUpdate()">Update Product</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTmpl>
+  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+</ng-template>

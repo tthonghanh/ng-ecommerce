@@ -1,0 +1,85 @@
+<div class="categories" *ngIf="category$ | async as categories else loadingTmpl">
+  <div class="row">
+    <div [ngClass]="isSidePanelVisible ? 'col-8' : 'col-12'">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-6">Category List</div>
+            <div class="col-6 text-end">
+              <button class="btn btn-sm btn-success" (click)="openSidePanel()">New</button>
+            </div>
+          </div>
+        </div>
+      <div class="card-body p-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>CategotyId</th>
+              <th>Name</th>
+              <th class="w-25">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cate of categories">
+              <td scope="row">{{cate.categoryId}}</td>
+              <td>{{cate.categoryName}}</td>
+              <td>
+                <button class="btn btn-md bg-light border m-1 text-danger" (click)="onDelete(cate.categoryId)">
+                  Delete
+              </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf="isSidePanelVisible">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-6">New Category</div>
+            <div class="col-6 text-end">
+              <button class="btn btn-sm btn-success" (click)="closeSidePanel()">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-group m-3" #categoryForm="ngForm">
+          <div class="row">
+            <div class="col-12">
+              <label for="">Category Name</label>
+              <input type="text" name="categoryName" [(ngModel)]="categoryObj.categoryName" id="" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="">Category</label>
+              <select [(ngModel)]="categoryObj.parentCategoryId" class="form-select" name="parentCategoryId" onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                <option class="text-dark" [value]="0">No parent category</option>
+                <option *ngFor="let cate of categories" [value]="cate.categoryId"> {{cate.categoryName}} </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-6">
+              <button type="button" class="btn btn-success" (click)="onReset()">Reset</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-success" (click)="onSave()" >Create Category</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTmpl>
+  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+</ng-template>

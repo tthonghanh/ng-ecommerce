@@ -1,0 +1,26 @@
+<div class="container-fluid py-5" style="margin-top: 60px;" *ngIf="product$ | async as products else loadingTmpl">
+  <div class="container py-5">
+      <!-- <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+          <h1 class="display-4">{{categoryName}}</h1>
+      </div> -->
+      <div class="row g-4">
+        <div class="col-lg-12">
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let prod of products">
+                    <app-product-card [productId]="prod.productId" [productImage]="prod.productImageUrl" [cateName]="prod.categoryName" [productName]="prod.productName" [productPrice]="prod.productPrice" [quantity]="prod.quantity || getQuantity(prod)" (productAddToCart)="addToCart(prod)" (increaseQuantity)="increaseProduct(prod)" (decreaseQuantity)="decreaseProduct(prod)" [isProductInCart]="isProductInCart(prod)"
+                    (updateProductInCart)="updateProduct(prod)"></app-product-card>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Bestsaler Product End -->
+
+<ng-template #loadingTmpl>
+  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+</ng-template>
